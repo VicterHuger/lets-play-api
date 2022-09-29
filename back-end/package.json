@@ -1,0 +1,20 @@
+{
+  "name": "api-lets-play",
+  "version": "1.0.0",
+  "description": "An api of the website let's play that aims to organize lobbies of differents matches of differents sports",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc && npx prisma generate && npx prisma migrate deploy",
+    "star": "node dist/src/server.ts",
+    "dev:empty": "dotenv -e .env.test nodemon src/server",
+    "dev:full": "dotenv -e .env.test prisma migrate dev && dotenv -e .env.test prisma db seed && dotenv -e .env.test nodemon src/server.ts"
+  },
+  "keywords": [
+    "sport",
+    "team",
+    "lobby",
+    "organization"
+  ],
+  "author": "Victor Hugo Borges Simões (github: https://github.com/VicterHuger)",
+  "license": "ISC"
+}
