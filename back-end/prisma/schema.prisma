@@ -9,3 +9,162 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  isBanned  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model Profile {
+  id              Int      @id @default(autoincrement())
+  userName        String   @unique
+  name            String
+  lastName        String
+  sex             Sex
+  birthday        DateTime
+  isPhoneVerified Boolean  @default(false)
+  isEmailVerified Boolean  @default(false)
+  score           Int
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  userId          Int
+  phoneId         Int
+  photoId         Int?
+  addressId       Int?
+
+  @@unique([userId])
+  @@map("profiles")
+}
+
+model Address {
+  id         Int      @id @default(autoincrement())
+  street     String
+  number     Int
+  complement String?  @default("no complement")
+  zipCode    String
+  createdAt  DateTime @default(now())
+  updateAt   DateTime @updatedAt
+  cityId     Int
+
+  @@unique([street, number, complement, zipCode, cityId])
+  @@map("addresses")
+}
+
+model City {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  stateId   Int
+
+  @@unique([name, stateId])
+  @@map("cities")
+}
+
+model State {
+  id        Int      @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("states")
+}
+
+model Lobby {
+  id                  Int      @id @default(autoincrement())
+  title               String
+  status              Status
+  description         String?  @default("No description")
+  eventDate           DateTime
+  eventTimeStart      DateTime
+  eventTimeEnd        DateTime
+  minParticipants     Int
+  maxParticipants     Int
+  allowedParticipants Allowed
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  userHostId          Int
+  sportId             Int
+  eventLocalId        Int
+
+  @@unique([userHostId, eventDate, eventTimeStart, eventLocalId, minParticipants])
+  @@map("lobbies")
+}
+
+model LobbyUser {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+  userId    Int
+  lobbyId   Int
+
+  @@unique([userId, lobbyId])
+  @@map("lobbiesUsers")
+}
+
+model EventLocal {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  isPublic  Boolean  @default(false)
+  isOutdoor Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  addressId Int
+  photoId   Int?
+
+  @@map("eventLocals")
+}
+
+model Sport {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("sports")
+}
+
+model Phone {
+  id        Int      @id @default(autoincrement())
+  number    String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("phones")
+}
+
+model Photo {
+  id          Int      @id @default(autoincrement())
+  description String?  @default("no description")
+  link        String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("photos")
+}
+
+enum Sex {
+  FEMALECISGENDER
+  FEMALETRANSGENDER
+  MALECISGENDER
+  MALETRANSGENDER
+}
+
+enum Status {
+  OPEN
+  ONGOING
+  CLOSED
+  FULL
+}
+
+enum Allowed {
+  MEN
+  WOMEN
+  MIXED
+}
