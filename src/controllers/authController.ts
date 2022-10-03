@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { TypeUserSingUp } from '../types/userTypes';
+import { TypeUserSingUp, TypeUserSingIn } from '../types/userTypes';
 import { authService } from '../services/authService';
 
 async function createUser(req: Request, res: Response) {
@@ -11,6 +11,16 @@ async function createUser(req: Request, res: Response) {
 
 }
 
+async function singInUser(req: Request, res: Response) {
+    const { email, password }: TypeUserSingIn = res.locals.body;
+
+    const token = await authService.signIn(email, password);
+
+    return res.status(200).send({ token });
+
+}
+
 export const authController = {
-    createUser
+    createUser,
+    singInUser
 } 
