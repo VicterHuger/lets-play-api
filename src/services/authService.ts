@@ -35,7 +35,13 @@ async function signIn(email: string, password: string) {
     return token;
 }
 
+export async function findUserById(userId: number) {
+    const user: User | null = await authRepository.findUserById(userId);
+    return user;
+}
+
 export const authService = {
     createUser,
-    signIn
+    signIn,
+    findUserById
 }
