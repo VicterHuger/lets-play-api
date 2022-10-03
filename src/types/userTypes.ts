@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
 
-export type TypeUserInsert = Omit<User, "id" | "isBanned" | "createdAt" | "updatedAt">;
+export type TypeUserSingIn = Omit<User, "id" | "isBanned" | "createdAt" | "updatedAt">;
 
 export interface IUserSingUp extends User {
     confirmPassword: string
