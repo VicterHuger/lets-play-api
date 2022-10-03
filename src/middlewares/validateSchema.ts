@@ -17,7 +17,7 @@ export function validateSchema<T>(schema: joi.ObjectSchema<T>) {
             }
         }
 
-        const { error }: { error: joi.ValidationError } = schema.validate(body, { abortEarly: false });
+        const { error }: { error: joi.ValidationError } = schema.validate(body, { abortEarly: false, errors: { label: 'key', wrap: { label: false } } });
         if (error) {
             const errorText: string = error.details.reduce((prev: string, curr: joi.ValidationErrorItem) => {
                 return `${prev} \n ${curr.message}`;
