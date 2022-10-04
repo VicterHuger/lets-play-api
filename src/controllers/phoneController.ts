@@ -19,7 +19,16 @@ async function getPhoneByNumber(__req: Request, res: Response) {
     return res.status(200).send(phone);
 }
 
+async function getPhoneById(_req: Request, res: Response) {
+    const id: number = res.locals.id;
+
+    const phone: Phone = await phoneService.getPhoneById(id);
+
+    return res.status(200).send(phone);
+}
+
 export const phoneController = {
     createPhone,
-    getPhoneByNumber
+    getPhoneByNumber,
+    getPhoneById
 }
