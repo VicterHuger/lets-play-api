@@ -16,6 +16,16 @@ async function createPhoto(photo: TypePhotoInsert) {
 
 }
 
+async function getPhotoByLink(link: string) {
+    const photoDb: Photo | null = await photoRepository.findPhotoByLink(link);
+
+    if (!photoDb || photoDb.link !== link) generateThrowErrorMessage('NotFound', `This photo isn't registered`);
+
+    return photoDb;
+
+}
+
 export const photoService = {
     createPhoto,
+    getPhotoByLink
 }
