@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { stripHtml } from 'string-strip-html';
 import { generateThrowErrorMessage } from '../utils/errorUtil';
 import jwt from 'jsonwebtoken'
-import * as authService from '../services/authService';
+import { authService } from '../services/authService';
 
 export async function tokenValidation(req: Request, res: Response, next: NextFunction) {
     const { authorization }: { authorization?: string } = req.headers;
