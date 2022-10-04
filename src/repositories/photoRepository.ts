@@ -11,7 +11,16 @@ async function createPhoto(photo: TypePhotoInsert) {
     });
 };
 
+async function findPhotoById(id: number) {
+    return await prisma.photo.findUnique({
+        where: {
+            id
+        }
+    });
+};
+
 export const photoRepository = {
     findPhotoByLink,
-    createPhoto
+    createPhoto,
+    findPhotoById
 }
