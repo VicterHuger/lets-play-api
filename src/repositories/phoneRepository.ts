@@ -12,7 +12,16 @@ async function createPhone(number: string) {
     })
 }
 
+async function findPhoneById(id: number) {
+    return await prisma.phone.findUnique({
+        where: {
+            id
+        }
+    });
+}
+
 export const phoneRepository = {
     findPhoneByNumber,
-    createPhone
+    createPhone,
+    findPhoneById
 }
