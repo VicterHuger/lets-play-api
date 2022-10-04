@@ -56,7 +56,7 @@ model Address {
   complement  String?      @default("no complement")
   zipCode     String
   createdAt   DateTime     @default(now())
-  updateAt    DateTime     @updatedAt
+  updatedAt   DateTime     @updatedAt
   city        City         @relation(fields: [cityId], references: [id])
   cityId      Int
   profiles    Profile[]
