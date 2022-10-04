@@ -16,7 +16,7 @@ async function getPhotoByLink(_req: Request, res: Response) {
 
     const photo: Photo = await photoService.getPhotoByLink(body.link);
 
-    return res.status(201).send(photo);
+    return res.status(200).send(photo);
 
 }
 
