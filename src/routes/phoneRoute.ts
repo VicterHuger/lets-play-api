@@ -9,5 +9,6 @@ const router: Router = Router();
 
 router.post('/phone/create', tokenValidation, validateSchema<TypePhoneInsert>(phoneSchema), phoneController.createPhone);
 
+router.get('/phone', tokenValidation, validateSchema<TypePhoneInsert>(phoneSchema), phoneController.getPhoneByNumber);
 
 export default router;
