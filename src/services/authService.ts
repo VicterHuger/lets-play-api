@@ -9,7 +9,7 @@ async function createUser(email: string, password: string) {
 
     const user: User | null = await authRepository.getUserByEmail(email);
 
-    if (!!user && user.email === email) generateThrowErrorMessage('Conflict', 'This is email is already sign up');
+    if (!!user && user.email === email) generateThrowErrorMessage('Conflict', 'This email is already sign up');
 
     const hashPassword: string = bcrypt.hashSync(password, 10);
 
@@ -35,7 +35,7 @@ async function signIn(email: string, password: string) {
     return token;
 }
 
-export async function findUserById(userId: number) {
+async function findUserById(userId: number) {
     const user: User | null = await authRepository.findUserById(userId);
     return user;
 }
