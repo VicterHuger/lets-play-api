@@ -20,7 +20,16 @@ async function getPhotoByLink(_req: Request, res: Response) {
 
 }
 
+async function getPhotoById(_req: Request, res: Response) {
+    const id: number = res.locals.id;
+
+    const photo: Photo = await photoService.getPhotoById(id);
+
+    return res.status(200).send(photo);
+}
+
 export const photoController = {
     createPhoto,
-    getPhotoByLink
+    getPhotoByLink,
+    getPhotoById
 }
