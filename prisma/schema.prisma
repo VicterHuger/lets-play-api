@@ -63,7 +63,7 @@ model Address {
   profiles     Profile[]
   EventLocals  EventLocal[]
 
-  @@unique([number, zipCode, complement])
+  @@unique([number, complement, zipCode])
   @@map("addresses")
 }
 
