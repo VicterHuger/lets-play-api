@@ -7,6 +7,6 @@ import { TypePhotoInsert } from '../types/photoType';
 
 const router: Router = Router();
 
-router.post('/photo/create', tokenValidation, validateSchema<TypePhotoInsert>(photoSchema), photoController.createPhoto)
+router.post('/photo/create', tokenValidation, validateSchema<TypePhotoInsert>(photoSchema), photoController.createPhoto);
 
 export default router;
