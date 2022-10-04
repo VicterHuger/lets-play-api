@@ -25,7 +25,17 @@ async function getPhotoByLink(link: string) {
 
 }
 
+async function getPhotoById(id: number) {
+    const photo: Photo | null = await photoRepository.findPhotoById(id);
+
+    if (!photo || photo.id !== id) generateThrowErrorMessage('NotFound', `This photo isn't registered`);
+
+    return photo;
+
+}
+
 export const photoService = {
     createPhoto,
-    getPhotoByLink
+    getPhotoByLink,
+    getPhotoById
 }
