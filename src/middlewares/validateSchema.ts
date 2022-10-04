@@ -1,21 +1,13 @@
-import { Request, Response, NextFunction } from "express";
+import { Response, NextFunction } from "express";
 import joi from 'joi';
-import { stripHtml } from 'string-strip-html';
-
-interface ICustomRequestBody<T> extends Request {
-    body: T
-}
-
+import { ICustomRequestBody } from '../types/requestTypes';
+import { sanitizeObject } from "../utils/sanitizeUtil";
 
 export function validateSchema<T>(schema: joi.ObjectSchema<T>) {
     return (req: ICustomRequestBody<T>, res: Response, next: NextFunction) => {
         const body = req.body;
 
-        for (const key of Object.keys(body)) {
-            if (typeof (body[key]) === "string") {
-                body[key] = stripHtml(body[key])?.result.trim() ?? body[key];
-            }
-        }
+        sanitizeObject<T>(body);
 
         const { error }: { error: joi.ValidationError } = schema.validate(body, { abortEarly: false, errors: { label: 'key', wrap: { label: false } } });
         if (error) {
