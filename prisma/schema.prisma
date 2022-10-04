@@ -50,17 +50,18 @@ model Profile {
 }
 
 model Address {
-  id          Int          @id @default(autoincrement())
-  street      String
-  number      Int
-  complement  String?      @default("no complement")
-  zipCode     String
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-  city        City         @relation(fields: [cityId], references: [id])
-  cityId      Int
-  profiles    Profile[]
-  EventLocals EventLocal[]
+  id           Int          @id @default(autoincrement())
+  street       String
+  number       Int
+  complement   String?      @default("no complement")
+  zipCode      String
+  neighborhood String
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  city         City         @relation(fields: [cityId], references: [id])
+  cityId       Int
+  profiles     Profile[]
+  EventLocals  EventLocal[]
 
   @@unique([street, number, complement, zipCode, cityId])
   @@map("addresses")
