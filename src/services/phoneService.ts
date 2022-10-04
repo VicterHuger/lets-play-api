@@ -23,9 +23,18 @@ async function getPhoneByNumber(number: string) {
     return phone;
 }
 
+async function getPhoneById(id: number) {
+    const phone: Phone | null = await phoneRepository.findPhoneById(id);
+
+    if (!phone || phone.id !== id) generateThrowErrorMessage('NotFound', `There isn't a phone with this id!`);
+
+    return phone;
+}
+
 
 
 export const phoneService = {
     createPhone,
-    getPhoneByNumber
+    getPhoneByNumber,
+    getPhoneById
 }
