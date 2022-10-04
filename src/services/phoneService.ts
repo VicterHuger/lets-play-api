@@ -15,8 +15,17 @@ async function createPhone(number: string) {
 
 }
 
+async function getPhoneByNumber(number: string) {
+    const phone: Phone | null = await phoneRepository.findPhoneByNumber(number);
+
+    if (!phone || phone.number !== number) generateThrowErrorMessage('Conflict', `This phone doesn't exist`);
+
+    return phone;
+}
+
 
 
 export const phoneService = {
     createPhone,
+    getPhoneByNumber
 }
