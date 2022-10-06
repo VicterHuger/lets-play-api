@@ -21,7 +21,14 @@ async function createAddress(address: IAddressInsert) {
     })
 }
 
+async function getAddressById(id: number) {
+    return await prisma.address.findUnique({
+        where: { id }
+    })
+}
+
 export const addressRepository = {
     getAddressByZipCodeNumberComplement,
-    createAddress
+    createAddress,
+    getAddressById
 }
