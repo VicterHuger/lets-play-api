@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "profiles" ALTER COLUMN "score" DROP NOT NULL,
+ALTER COLUMN "score" SET DEFAULT 0;
