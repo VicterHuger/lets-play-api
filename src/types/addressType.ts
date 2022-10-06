@@ -17,3 +17,6 @@ export interface IAddressSchema extends TypeAddressInsertNoComplement {
     number?: string,
 }
 
+export interface IAddressInsert extends IAddressSchema {
+    cityId: number
+}
