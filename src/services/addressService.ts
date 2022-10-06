@@ -3,7 +3,7 @@ import cep, { CEP } from 'cep-promise';
 import { addressRepository } from '../repositories/addressRepository';
 import { cityService } from '../services/cityService';
 import { stateService } from '../services/stateService';
-import { ICepPromiseSuccessfull, IAddressInsert, IAddressSchema } from '../types/addressType';
+import { ICepPromiseSuccessfull, IAddressInsert, IAddressSchema, TypeAdressSchema } from '../types/addressType';
 import { generateThrowErrorMessage } from '../utils/errorUtil';
 
 
@@ -27,6 +27,14 @@ async function createAddress(partialAddress: IAddressSchema) {
     if (!address) generateThrowErrorMessage('InternalServerError', 'Something went wrong and it was not possible to insert the new address');
 
     return address;
+}
+
+async function getAddress({ zipCode, complement, number }: TypeAdressSchema) {
+    const result: Address | null = await addressRepository.getAddressByZipCodeNumberComplement(zipCode, number, complement);
+
+    if (!result) generateThrowErrorMessage('NotFound', 'There is no address with the information passed!');
+
+    return result;
 }
 
 async function getAddressInfoByZipCode(code: string): Promise<ICepPromiseSuccessfull | never> {
@@ -86,5 +94,6 @@ function constructObjectAddress(street: string, zipCode: string, neighborhood: s
 
 
 export const addressService = {
-    createAddress
+    createAddress,
+    getAddress
 }
