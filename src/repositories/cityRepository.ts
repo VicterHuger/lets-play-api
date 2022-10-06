@@ -8,3 +8,15 @@ async function getCityByNameAndStateId(name: string, stateId: number) {
     })
 }
 
+async function createCity(name: string, stateId: number) {
+    return await prisma.city.create({
+        data: {
+            name, stateId
+        }
+    })
+}
+
+export const cityRepository = {
+    getCityByNameAndStateId,
+    createCity
+} 
