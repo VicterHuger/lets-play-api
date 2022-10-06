@@ -37,6 +37,14 @@ async function getAddress({ zipCode, complement, number }: TypeAdressSchema) {
     return result;
 }
 
+async function getAddressById(id: number) {
+    const address = await addressRepository.getAddressById(id);
+
+    if (!address) generateThrowErrorMessage('NotFound', 'There is no address with this id');
+
+    return address;
+}
+
 async function getAddressInfoByZipCode(code: string): Promise<ICepPromiseSuccessfull | never> {
     try {
         const address: CEP = await cep(code);
@@ -95,5 +103,6 @@ function constructObjectAddress(street: string, zipCode: string, neighborhood: s
 
 export const addressService = {
     createAddress,
-    getAddress
+    getAddress,
+    getAddressById
 }
