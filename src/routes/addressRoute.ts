@@ -9,4 +9,6 @@ const router: Router = Router();
 
 router.post('/address/create', tokenValidation, validateSchema<IAddressSchema>(addressSchemaCreate), addressController.createAddress);
 
+router.get('/address', tokenValidation, validateSchema<TypeAdressSchema>(AddressSchemaGet), addressController.getAddress)
+
 export default router;
