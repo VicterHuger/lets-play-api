@@ -11,3 +11,9 @@ export interface ICepPromiseSuccessfull {
 }
 
 type TypeAddressInsertNoComplement = Omit<Address, "id" | "createdAt" | "updatedAt" | "complement" | "number" | "cityId">;
+
+export interface IAddressSchema extends TypeAddressInsertNoComplement {
+    complement?: string,
+    number?: string,
+}
+
