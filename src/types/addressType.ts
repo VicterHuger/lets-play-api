@@ -9,3 +9,5 @@ export interface ICepPromiseSuccessfull {
     street: string,
     neighborhood: string,
 }
+
+type TypeAddressInsertNoComplement = Omit<Address, "id" | "createdAt" | "updatedAt" | "complement" | "number" | "cityId">;
