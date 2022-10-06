@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import { citiesFactory } from './factories/citiesFactory';
+import { sportsFactory } from './factories/sportsFactory';
 import { statesFactory } from './factories/statesFactory';
 
 const prisma = new PrismaClient();
@@ -7,6 +8,7 @@ const prisma = new PrismaClient();
 async function main() {
     await statesFactory();
     await citiesFactory();
+    await sportsFactory();
     return;
 }
 
