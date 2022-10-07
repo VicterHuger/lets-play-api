@@ -15,7 +15,16 @@ async function findEventLocalByAddressId(addressId: number) {
     })
 }
 
+async function findEventLocalById(id: number) {
+    return await prisma.eventLocal.findUnique({
+        where: {
+            id
+        }
+    })
+}
+
 export const eventLocalRepository = {
     createEventLocal,
     findEventLocalByAddressId,
+    findEventLocalById
 }
