@@ -7,8 +7,6 @@ async function createProfile(_req: Request, res: Response) {
     const body: TypeProfileInsert = res.locals.body;
     const userId: number = res.locals.userId;
 
-    console.log(body);
-
     const profile: Profile = await profileService.createProfile(body, userId);
 
     return res.status(201).send(profile);
