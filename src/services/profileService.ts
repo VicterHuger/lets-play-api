@@ -6,6 +6,7 @@ import { photoService } from './photoService';
 import { phoneService } from './phoneService';
 import { addressService } from './addressService';
 import { Profile } from '@prisma/client';
+import { formatDateFormat } from '../utils/formatUtil';
 
 
 async function createProfile(profileSchema: TypeProfileInsert, userId: number) {
@@ -47,10 +48,6 @@ async function updateProfile(profileSchema: TypeProfileUpdate, id: number, userI
 
     return profile;
 
-}
-
-function formatDateFormat(string: string | Date) {
-    return new Date(string);
 }
 
 export const profileService = {
