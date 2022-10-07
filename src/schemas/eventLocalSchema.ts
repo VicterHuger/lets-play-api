@@ -41,3 +41,7 @@ export const eventLocalSchema: joi.ObjectSchema<TypeEventLocalInsert> = joi.obje
     addressId: addressId.required(),
     photoId: photoId.required()
 });
+
+export const eventLocalAddressIdSchema: joi.ObjectSchema<{ addressId: number }> = joi.object().keys({
+    addressId: addressId.required()
+})
