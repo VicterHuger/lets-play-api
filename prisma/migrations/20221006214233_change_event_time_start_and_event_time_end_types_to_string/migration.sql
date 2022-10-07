@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "lobbies" ALTER COLUMN "eventTimeStart" SET DATA TYPE TEXT,
+ALTER COLUMN "eventTimeEnd" SET DATA TYPE TEXT;
