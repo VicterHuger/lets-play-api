@@ -16,6 +16,26 @@ async function createEventLocal(eventLocal: TypeEventLocalInsert) {
     return eventLocalCreated;
 }
 
+async function getEventLocalByAddressId(addressId: number) {
+    const eventLocal = await eventLocalRepository.findEventLocalByAddressId(addressId);
+
+    if (!eventLocal) generateThrowErrorMessage('NotFound', 'There is no event local with the address id informed');
+
+    return eventLocal;
+
+}
+
+async function getEventLocalById(id: number) {
+    const eventLocal = await eventLocalRepository.findEventLocalById(id);
+
+    if (!eventLocal) generateThrowErrorMessage('NotFound', 'There is no event local with the id informed');
+
+    return eventLocal;
+
+}
+
 export const eventLocalService = {
     createEventLocal,
+    getEventLocalByAddressId,
+    getEventLocalById
 }
