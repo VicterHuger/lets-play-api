@@ -97,8 +97,8 @@ model Lobby {
   status              Status
   description         String?     @default("No description")
   eventDate           DateTime
-  eventTimeStart      DateTime
-  eventTimeEnd        DateTime
+  eventTimeStart      String
+  eventTimeEnd        String
   minParticipants     Int
   maxParticipants     Int
   allowedParticipants Allowed
