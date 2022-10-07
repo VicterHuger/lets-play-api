@@ -12,6 +12,6 @@ router.post('/phone/create', tokenValidation, validateSchema<TypePhoneInsert>(ph
 
 router.get('/phone', tokenValidation, validateSchema<TypePhoneInsert>(phoneSchema), phoneController.getPhoneByNumber);
 
-router.get('/phone/:id', tokenValidation, validateParamId, phoneController.getPhoneById)
+router.get('/phone/:id', tokenValidation, validateParamId, phoneController.getPhoneById);
 
 export default router;
