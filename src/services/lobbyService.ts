@@ -21,7 +21,7 @@ async function createLobby(lobbyPartial: TypeLobbyInsert, userHostId: number) {
 }
 
 async function getLobbyById(id: number) {
-    const lobby: Lobby | null = await lobbyRepository.findLobbyById(id);
+    const lobby = await lobbyRepository.findLobbyById(id);
 
     if (!lobby) generateThrowErrorMessage('NotFound', 'There is no lobby with this lobby id');
 
