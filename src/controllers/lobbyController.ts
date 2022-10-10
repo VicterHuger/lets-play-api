@@ -23,7 +23,16 @@ export async function getLobbyById(_req: Request, res: Response) {
 
 }
 
+export async function getLobbies(_req: Request, res: Response) {
+
+    const lobbies = await lobbyService.getLobbies();
+
+    return res.status(200).send(lobbies);
+
+}
+
 export const lobbyController = {
     createLobby,
-    getLobbyById
+    getLobbyById,
+    getLobbies
 }
