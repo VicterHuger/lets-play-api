@@ -21,6 +21,7 @@
   "author": "Victor Hugo Borges Simões (github: https://github.com/VicterHuger)",
   "license": "ISC",
   "dependencies": {
+    "@faker-js/faker": "^7.5.0",
     "@prisma/client": "^4.4.0",
     "bcrypt": "^5.0.1",
     "cep-promise": "^4.2.0",
