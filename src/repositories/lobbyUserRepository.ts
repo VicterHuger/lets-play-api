@@ -11,6 +11,16 @@ async function findLobbyUserByIds(userId: number, lobbyId: number) {
     });
 }
 
+async function createLobbyUser(userId: number, lobbyId: number) {
+    return await prisma.lobbyUser.create({
+        data: {
+            lobbyId,
+            userId
+        }
+    })
+}
+
 export const lobbyUserRepository = {
     findLobbyUserByIds,
+    createLobbyUser
 }
