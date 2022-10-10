@@ -14,6 +14,16 @@ export async function createLobby(_req: Request, res: Response) {
 
 }
 
+export async function getLobbyById(_req: Request, res: Response) {
+    const id: number = res.locals.id;
+
+    const lobby = await lobbyService.getLobbyById(id);
+
+    return res.status(200).send(lobby);
+
+}
+
 export const lobbyController = {
-    createLobby
+    createLobby,
+    getLobbyById
 }
