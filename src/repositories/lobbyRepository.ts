@@ -29,7 +29,16 @@ async function createLobby(lobbyInfo: TypeLobbyInsert, userId: number) {
     })
 }
 
+async function findLobbyById(id: number) {
+    return await prisma.lobby.findUnique({
+        where: {
+            id
+        }
+    });
+}
+
 export const lobbyRepository = {
     findLobbyByUserHostId_eventDate_eventTimeStart_eventLocalId_minParticipants,
-    createLobby
+    createLobby,
+    findLobbyById
 }
