@@ -29,7 +29,14 @@ async function getLobbyById(id: number) {
 
 }
 
+async function getLobbies() {
+    const lobbies = await lobbyRepository.findLobbies();
+
+    return lobbies;
+}
+
 export const lobbyService = {
     createLobby,
-    getLobbyById
+    getLobbyById,
+    getLobbies
 }
