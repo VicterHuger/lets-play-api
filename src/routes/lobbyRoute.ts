@@ -12,6 +12,6 @@ router.post('/lobby/create', tokenValidation, validateSchema<TypeLobbyInsert>(lo
 
 router.get('/lobby/:id', tokenValidation, validateParamId, lobbyController.getLobbyById);
 
-
+router.get('/lobbies', tokenValidation, lobbyController.getLobbies);
 
 export default router;
