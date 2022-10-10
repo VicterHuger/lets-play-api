@@ -18,9 +18,18 @@ async function createLobby(lobbyPartial: TypeLobbyInsert, userHostId: number) {
     if (!lobby) generateThrowErrorMessage('InternalServerError', 'Something went wrong when creating a lobby in database');
 
     return lobby;
+}
+
+async function getLobbyById(id: number) {
+    const lobby: Lobby | null = await lobbyRepository.findLobbyById(id);
+
+    if (!lobby) generateThrowErrorMessage('NotFound', 'There is no lobby with this lobby id');
+
+    return lobby;
 
 }
 
 export const lobbyService = {
-    createLobby
+    createLobby,
+    getLobbyById
 }
