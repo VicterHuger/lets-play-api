@@ -134,8 +134,113 @@ async function findLobbyById(id: number) {
     });
 }
 
+async function findLobbies() {
+    return await prisma.lobby.findMany({
+        select: {
+            id: true,
+            title: true,
+            description: true,
+            eventDate: true,
+            eventTimeStart: true,
+            eventTimeEnd: true,
+            minParticipants: true,
+            maxParticipants: true,
+            allowedParticipants: true,
+            createdAt: true,
+            updatedAt: true,
+            userHost: {
+                select: {
+                    createdAt: true,
+                    profiles: {
+                        select: {
+                            userId: true,
+                            userName: true,
+                            sex: true,
+                            score: true,
+                            photo: {
+                                select: {
+                                    description: true,
+                                    link: true
+                                }
+                            }
+
+                        }
+                    }
+                }
+            },
+            sport: {
+                select: {
+                    name: true
+                }
+            },
+            eventLocal: {
+                select: {
+                    name: true,
+                    isPublic: true,
+                    isOutdoor: true,
+                    photo: {
+                        select: {
+                            description: true,
+                            link: true
+                        }
+                    },
+                    address: {
+                        select: {
+                            street: true,
+                            number: true,
+                            complement: true,
+                            zipCode: true,
+                            city: {
+                                select: {
+                                    name: true,
+                                    state: {
+                                        select: {
+                                            name: true
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            lobbiesUsers: {
+                orderBy: {
+                    createdAt: 'asc'
+                },
+                skip: 1,
+                select: {
+                    user: {
+                        select: {
+                            createdAt: true,
+                            profiles: {
+                                select: {
+                                    userId: true,
+                                    userName: true,
+                                    sex: true,
+                                    score: true,
+                                    photo: {
+                                        select: {
+                                            description: true,
+                                            link: true
+                                        }
+                                    }
+
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+    });
+}
+
+
 export const lobbyRepository = {
     findLobbyByUserHostId_eventDate_eventTimeStart_eventLocalId_minParticipants,
     createLobby,
-    findLobbyById
+    findLobbyById,
+    findLobbies
 }
