@@ -10,6 +10,8 @@ const router: Router = Router();
 
 router.post('/lobby/create', tokenValidation, validateSchema<TypeLobbyInsert>(lobbyInsertSchema), lobbyController.createLobby);
 
-router.get('/lobby/:id', tokenValidation, validateParamId, lobbyController.getLobbyById)
+router.get('/lobby/:id', tokenValidation, validateParamId, lobbyController.getLobbyById);
+
+
 
 export default router;
