@@ -11,7 +11,7 @@ async function createEventLocal(eventLocal: TypeEventLocalInsert) {
 
     const eventLocalCreated: EventLocal | null = await eventLocalRepository.createEventLocal(eventLocal);
 
-    if (!eventLocalCreated) generateThrowErrorMessage('InternalServerError', 'Something went wronf and the local event could not be created');
+    if (!eventLocalCreated) generateThrowErrorMessage('InternalServerError', 'Something went wrong and the local event could not be created');
 
     return eventLocalCreated;
 }
