@@ -9,7 +9,7 @@ const status = joi.string().valid(...Object.values(Status)).label('Status').mess
     'any.only': '{#label} value is not valid!',
 });
 
-const title = joi.string().min(10).max(100).pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ ]+$/, 'letters').label('Title').messages({
+const title = joi.string().min(10).max(50).pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ ]+$/, 'letters').label('Title').messages({
     'string.required': '{#label} must be provided!',
     'string.empty': '{#label} must not be empty!',
     'string.base': '{#label} must be a valid string',
