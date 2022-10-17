@@ -1,7 +1,7 @@
 import joi from 'joi';
 import { TypeEventLocalInsert } from '../types/eventLocalType';
 
-const name = joi.string().min(10).max(100).pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ ]+$/, 'letters').label('Name').messages({
+const name = joi.string().min(10).max(50).pattern(/^[A-Za-zÀ-ÖØ-öø-ÿ ]+$/, 'letters').label('Name').messages({
     'string.required': '{#label} must be provided!',
     'string.empty': '{#label} must not be empty!',
     'string.base': '{#label} must be a valid string',
@@ -36,8 +36,8 @@ const photoId = joi.number().positive().integer().label('PhotoId').messages({
 
 export const eventLocalSchema: joi.ObjectSchema<TypeEventLocalInsert> = joi.object().keys({
     name: name.required(),
-    isPublic: isPublic.required,
-    isOutdoor: isOutdoor.required,
+    isPublic,
+    isOutdoor,
     addressId: addressId.required(),
     photoId: photoId.required()
 });
