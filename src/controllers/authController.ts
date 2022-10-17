@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { TypeUserSingUp, TypeUserSingIn } from '../types/userTypes';
 import { authService } from '../services/authService';
 
-async function createUser(req: Request, res: Response) {
+async function createUser(_req: Request, res: Response) {
     const { email, password }: TypeUserSingUp = res.locals.body;
 
     const user = await authService.createUser(email, password);
@@ -11,7 +11,7 @@ async function createUser(req: Request, res: Response) {
 
 }
 
-async function singInUser(req: Request, res: Response) {
+async function singInUser(_req: Request, res: Response) {
     const { email, password }: TypeUserSingIn = res.locals.body;
 
     const token = await authService.signIn(email, password);
