@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import bcrypt from 'bcrypt';
 import prisma from '../../src/config/database';
 import { TypeUserSingIn } from '../../src/types/userTypes';
 
@@ -24,7 +25,10 @@ function createUser(isSignUp: boolean = false, isWrongPassword: boolean = false)
 async function insertUserInDb(user: TypeUserSingIn | null = null) {
     const data = user ? user : createUser();
     return await prisma.user.create({
-        data
+        data: {
+            email: data.email,
+            password: bcrypt.hashSync(data.password, 10)
+        }
     });
 }
 
