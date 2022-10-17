@@ -53,8 +53,6 @@ describe('/POST sign-in', () => {
 
         const result = await server.post('/sign-in').send(user);
 
-        console.log(result.body);
-
         const { userId } = jwt.verify(result.body.token, process.env.TOKEN_SECRET_KEY) as { userId: number };
 
         expect(result.status).toBe(200);
